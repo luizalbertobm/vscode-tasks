@@ -1,0 +1,71 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "phinx-migrate",
+            "command": "phinx migrate -e ${input:environment}",
+            "type": "shell",
+        },
+        {
+            "label": "phinx-rollback",
+            "command": "phinx rollback -e ${input:environment}",
+            "type": "shell",
+        },
+        {
+            "label": "phinx-create:migration",
+            "type": "shell",
+            "command": "phinx create ${input:migrationName}"
+        },
+        {
+            "label": "phinx-create:seed",
+            "type": "shell",
+            "command": "phinx seed:create ${input:seederName}"
+        },
+        {
+            "label": "composer-require",
+            "command": "composer require ${input:packageName}",
+            "type": "shell",
+        },
+        {
+            "label": "composer-remove",
+            "command": "composer require ${input:packageName}",
+            "type": "shell",
+        },
+        {
+            "label": "composer-install",
+            "command": "composer install",
+            "type": "shell",
+        },
+        {
+            "label": "composer-update",
+            "command": "composer update ",
+            "type": "shell",
+        },
+    ],
+    "inputs": [
+        {
+            "id": "environment",
+            "description": "Informe em qual ambiente será executada a tarefa",
+            "type": "pickString",
+            "options":["development", "testing", "production"]
+        },
+        {
+            "id": "packageName",
+            "description": "Informe o nome do pacote",
+            "type": "promptString",
+            "default": "twbs/bootstrap",
+        },
+        {
+            "id": "migrationName",
+            "description": "Nome do arquivo de migração",
+            "type": "promptString",
+            "default": "MyNewMigration",
+        },
+        {
+            "id": "seederName",
+            "description": "Nome do arquivo de semeadura",
+            "type": "promptString",
+            "default": "MyNewSeeder",
+        },
+      ]
+}
